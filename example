@@ -1,0 +1,63 @@
+use core:io
+// io:
+// - print          : (any)->()                               // basicly "io.write(str..'\n')"
+
+// - stdin          : file
+// - stdout         : file
+// - stderr         : file
+
+// - open           : (string, i32)->(file)                   // opens files giving back a file descriptor
+// - close          : (file)->()                              // close file by a file descriptor
+
+// - read           : ()->(bool, string)                      // read from console
+// - read           : (file)->(bool, string)                  // read from file
+// - file:read      :
+
+// - write          : (string)->()                            // write to console
+// - write          : (file, string)->(bool)                  // write to file
+// - file:write     :
+
+use core:range
+// range:
+// - type range: (
+//   i32 from
+//   i32 to
+// )
+// - range          : (i32, i32)->(range)
+// - range:+		: (range)->(range)
+// - range:-		: (range)->(range)
+
+use core:array
+// array:
+//   array<t> ~ t[]
+// - range            : (array<t>, u32, u32?)->(array<t>)     // sub array in given range
+// - array<t>:range   :
+// - range            : (array<t>, range)->(array<t>)         // sub array in given range
+// - array<t>:range   :
+
+
+// - 
+
+// typ nazwa = cos
+// nazwa : typ = cos
+
+func someFunction() : () pierddnolem()
+
+func main(string[] args) : i32
+{
+	foreach arg in args:sub(1) {
+		io.print(arg)
+	}
+	return 0
+}
+
+string nazwa = "abcd"
+
+// ()->(u8, u8, u8, u8) nazwa = func{ return ('a', 'b', 'c', 'd') }
+
+func nazwa() : (u8, u8, u8, u8) {
+	return ('a', 'b', 'c', 'd')
+}
+
+func nazwa() : (u8, u8, u8, u8)
+	('a', 'b', 'c', 'd')

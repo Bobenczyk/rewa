@@ -1,0 +1,30 @@
+module io open
+  // file
+  type file : i32
+
+  // files
+  file stdin  = 0
+  file stdout = 1
+  file stderr = 2
+
+  //  open | io.open
+  func open(string path, i32 flags): file {}
+
+  // close | io.close
+  func close(file f): () {}
+
+  // write | io.write
+  func       write(file f, string str): bool {}
+  func file: write(        string str): bool { /* syscall(write, self, str) */ }
+  func       write(        string str): ()
+    write(stdout, str)
+
+  //  read | io.read
+  func       read(file f): (bool, string) {}
+  func file: read():       (bool, string) {}
+  func       read():       (bool, string) {}
+
+  // print
+  func print(string str): () write(str..'\n')
+end
+(string)->() print = io.print

@@ -1,0 +1,11 @@
+module array open
+  // array
+  type array<t> : t[]
+
+  // range | array.range
+  func range(array<t> arr, range ran): array<t> {}
+	  // nwm jak to z implemantowac (sigma)
+  func array<t>: range(range ran): array<t> {}
+    // nwm to tez ez ezz eeezzzz
+
+end

@@ -1,0 +1,21 @@
+module range open
+  // range
+  type range : (
+    i32 from
+    i32 to
+  )
+
+  // range | range.range
+  func range(i32 from, i32 to): range 
+  	(from = from, to = to)
+
+  // operator overloading (sigma)
+  func range: + (range ran): range {
+	  self.from += ran.self
+	  self.to   += ran.to
+  }
+  func range: - (range r): range {
+	  self.from -= ran.self
+	  self.to   -= ran.to
+  }
+end

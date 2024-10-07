@@ -1,0 +1,99 @@
+prog : { stat }
+
+module_path : [ ( "." | ".." ) ":" ] name [ { ":" name } ]
+
+use :
+	"use" module_path [ block ]
+
+
+module :
+	[ "internal" ] "module" module_path
+	(
+		"open" { stat } "end" |
+	)
+
+
+block : "{" { stat } "}"
+
+type :
+	name,
+	"(" type [ { "," type } ] ")",
+	"(" type name [ { "," type name } ] ")",
+
+
+stat :
+	"func":     func_dec,
+	var_dec,
+
+	"foreach":  foreach,
+	semi_exprs,
+
+	"module":   module,
+	"use":      use,
+
+
+
+unop_expr:
+	"!" expr,
+	"#" expr,
+
+
+term :
+	unop_expr,
+	name,
+	"{": block,
+	"(" expr ")",
+	expr ".." expr,
+	number,
+
+mul_expr:
+	term "*" term,
+	term "/" term,
+
+sum_expr:
+	mul_expr "+" mul_expr,
+	mul_expr "-" mul_expr,
+
+binop_expr :
+	sum_expr
+
+expr :
+	binop_expr
+	func_call,
+	semi_exprs,
+	block,
+	
+
+semi_exprs :
+	"if":     if,
+	"while":  while,
+	"for":    for,
+
+
+tuple_vals :
+	"(" expr [ { "," expr } ] ")"
+param_types_names :
+	type name [ { "," type name } ]
+
+
+func_dec :
+	"func" name "(" [ param_types_names ] ")" [ ":" type ] expr
+
+while :
+	"while" expr expr
+
+if :
+	"if" expr expr [ { "elseif" expr expr } ] [ "else" expr ]
+
+
+foreach :
+	"foreach" name "in" expr expr
+
+
+var_dec :
+	type name "=" expr
+	// name ":" type "=" expr
+
+
+func_call :
+	expr "(" [ expr [ { "," expr } ] ] ")"

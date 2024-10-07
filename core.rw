@@ -1,0 +1,7 @@
+module core open
+  use .: corelib: io
+  use .: corelib: range
+  use .: corelib: array
+
+  
+end
